@@ -67,13 +67,14 @@
 
             // Get the current date
             const currentDate = new Date();
-
             const dateString = currentDate.toLocaleDateString();
+            var timeString = "";
+            
             if(currentDate.getMinutes() < 10)
             {
-                const timeString = currentDate.getHours().toString() + ":0" + currentDate.getMinutes().toString();
+                timeString = currentDate.getHours().toString() + ":0" + currentDate.getMinutes().toString();
             }else{
-                const timeString = currentDate.getHours().toString() + ":" + currentDate.getMinutes().toString();
+                timeString = currentDate.getHours().toString() + ":" + currentDate.getMinutes().toString();
             }
             dateBox.value = dateString + "  " + timeString;
             
