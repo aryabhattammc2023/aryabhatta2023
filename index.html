@@ -23,8 +23,14 @@
                 <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="phone">Phone Number <span class="required">*</span></label>
-                <input type="tel" id="phone" name="phone" required>
+                <label for="meal">Meal <span class="required">*</span></label>
+                <select name="mealselect" id="mealselect" type="mealselect">
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Snacks">Snacks</option>
+                    <option value="Dinner">Dinner</option>
+                </select>
+                <input type="meal" id="meal" name="meal" hidden="true">
             </div>
             <div class="form-group">
                 <label for="room">Room Number <span class="required">*</span></label>
@@ -35,12 +41,12 @@
                 <input type="text" id="date" name="date" hidden="true">
             </div>
             <div class="form-group">
-                <label for="complaint">Complaint & Time of Food <span class="required">*</span></label>
+                <label for="complaint">Complaint <span class="required">*</span></label>
                 <textarea id="complaint" name="complaint" rows="5" required></textarea>
             </div>
             <div class="form-group">
-                <label for="image">Image (Optional)</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <label for="image">Image <span class="required">(G-Drive link/-)</span></label>
+                <input type="text" id="imageGD" name="imageGD" value="optional">
             </div>
             <button id="submitButton" type="submit">Submit</button>
         </form>
@@ -54,28 +60,23 @@
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzvOSwTr5k0c3fcOjKlRbHj1DTC8Rr0iR9JIMzHHpABIK1ux-WIMsZy48T2dQ15FijKyg/exec'
         const form = document.getElementById('complaintForm');
         const dateBox = document.getElementById('date');
+        const mealBox = document.getElementById('meal')
+
+        var dropdownList = document.getElementById('mealselect');
+
+        dropdownList.onchange = (ev) =>{
+            mealBox.value = dropdownList.value;
+        }
 
         form.addEventListener('submit', e => {
-            const phone = document.getElementById('phone').value;
             const cmptext = document.getElementById('complaint');
-            console.log(phone.length);
-            if(phone.length < 10 || phone.length > 10)
-            {
-                alert("Not a valid number...");
-                return;
-            }
 
             // Get the current date
             const currentDate = new Date();
+
             const dateString = currentDate.toLocaleDateString();
-            var timeString = "";
-            
-            if(currentDate.getMinutes() < 10)
-            {
-                timeString = currentDate.getHours().toString() + ":0" + currentDate.getMinutes().toString();
-            }else{
-                timeString = currentDate.getHours().toString() + ":" + currentDate.getMinutes().toString();
-            }
+            const timeString = currentDate.getHours().toString() + ":" + currentDate.getMinutes().toString();
+            console.log(dateString + ' ' + timeString);
             dateBox.value = dateString + "  " + timeString;
             
             e.preventDefault()
