@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+    <link rel="shortcut icon" href="aryabhatta.jpg" type="image/x-icon">
+    <title>Aryabhatta MMC 2023</title>
+</head>
+<body>
+    <header>
+        <div class="header-title">Aryabhatta Complaint Portal</div>
+        <div class="header-image">
+            <img src="aryabhatta.jpg" alt="Header Image">
+        </div>
+    </header>
+    <div class="container">
+        <h1></h1>
+        <form id="complaintForm">
+            <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="room">Room Number <span class="required">*</span></label>
+                <input type="room" id="room" name="room" required>
+            </div>
+            <div class="form-group">
+                <label for="complaint">Complaint (Required)</label>
+                <textarea id="complaint" name="complaint" rows="5" required></textarea>
+            </div>
+            <!-- <div class="form-group">
+                <label for="image">Image (Optional)</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div> -->
+            <button id="submitButton" type="submit">Submit</button>
+        </form>
+        <div id="message" class="hidden"></div>
+    </div>
+    <footer>
+        &copy; 2023 Aryabhatta MMC
+    </footer>
+    <script src="script.js"></script>
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzvOSwTr5k0c3fcOjKlRbHj1DTC8Rr0iR9JIMzHHpABIK1ux-WIMsZy48T2dQ15FijKyg/exec'
+        const form = document.getElementById('complaintForm');
+      
+        form.addEventListener('submit', e => {
+            const phone = document.getElementById('phone').value;
+            console.log(phone.length);
+            if(phone.length < 10 || phone.length > 10)
+            {
+                alert("Not a valid number...");
+                return;
+            }
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+</html>
