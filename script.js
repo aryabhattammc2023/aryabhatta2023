@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+    //version: 1.2;
+    
     const complaintForm = document.getElementById('complaintForm');
     const message = document.getElementById('message');
 
