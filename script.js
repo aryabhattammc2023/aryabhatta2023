@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    //version: 1.2;
-    
     const complaintForm = document.getElementById('complaintForm');
     const message = document.getElementById('message');
 
@@ -9,11 +7,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const submit = document.getElementById('submitButton');
         
+        setTimeout(()=>{
+            alert("Uploading wait untill success");
+            console.log("Uploading...");
+        },2000);
+
         // Display a success message
         message.textContent = 'Complaint submitted successfully. Thank you!';
         var defmargin = submit.style.marginBottom;
         submit.style.marginBottom = "10%";
         message.classList.remove('hidden');
+        
         setTimeout(() => {
             message.classList.add('hidden');
             submit.style.marginBottom = defmargin;
