@@ -31,6 +31,10 @@
                 <input type="room" id="room" name="room" required>
             </div>
             <div class="form-group">
+                <label for="date" hidden="true">Date</label>
+                <input type="text" id="date" name="date" hidden="true">
+            </div>
+            <div class="form-group">
                 <label for="complaint">Complaint (Required)</label>
                 <textarea id="complaint" name="complaint" rows="5" required></textarea>
             </div>
@@ -49,19 +53,30 @@
       <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzvOSwTr5k0c3fcOjKlRbHj1DTC8Rr0iR9JIMzHHpABIK1ux-WIMsZy48T2dQ15FijKyg/exec'
         const form = document.getElementById('complaintForm');
-      
+        const dateBox = document.getElementById('date');
+
         form.addEventListener('submit', e => {
             const phone = document.getElementById('phone').value;
+            const cmptext = document.getElementById('complaint');
             console.log(phone.length);
             if(phone.length < 10 || phone.length > 10)
             {
                 alert("Not a valid number...");
                 return;
             }
-          e.preventDefault()
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message))
+
+            // Get the current date
+            const currentDate = new Date();
+
+            const dateString = currentDate.toLocaleDateString();
+            const timeString = currentDate.getHours().toString() + ":" + currentDate.getMinutes().toString();
+            console.log(dateString + ' ' + timeString);
+            dateBox.value = dateString + "  " + timeString;
+            
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => console.log('Success!'))
+                .catch(error => console.error('Error!', error.message))
         })
     </script>
 </body>
