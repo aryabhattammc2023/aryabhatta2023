@@ -6,12 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
 
         const submit = document.getElementById('submitButton');
-        
-        setTimeout(()=>{
-            alert("Uploading wait untill success");
-            console.log("Uploading...");
-        },2000);
 
+        alert("Uploading (don't close)");
+        wait(2000);
         // Display a success message
         message.textContent = 'Complaint submitted successfully. Thank you!';
         var defmargin = submit.style.marginBottom;
