@@ -69,8 +69,12 @@
             const currentDate = new Date();
 
             const dateString = currentDate.toLocaleDateString();
-            const timeString = currentDate.getHours().toString() + ":" + currentDate.getMinutes().toString();
-            console.log(dateString + ' ' + timeString);
+            if(currentDate.getMinutes() < 10)
+            {
+                const timeString = currentDate.getHours().toString() + ":0" + currentDate.getMinutes().toString();
+            }else{
+                const timeString = currentDate.getHours().toString() + ":" + currentDate.getMinutes().toString();
+            }
             dateBox.value = dateString + "  " + timeString;
             
             e.preventDefault()
