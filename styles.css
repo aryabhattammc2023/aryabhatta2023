@@ -55,6 +55,7 @@ input[type="text"],
 input[type="meal"],
 input[type="room"],
 input[type="file"],
+input[type="date"],
 button {
     width: 100%;
     padding: 10px;
@@ -68,7 +69,8 @@ button {
 input[type="text"],
 input[type="meal"],
 input[type="room"],
-input[type="file"] {
+input[type="file"],
+input[type="date"] {
     color: #000;
 }
 
