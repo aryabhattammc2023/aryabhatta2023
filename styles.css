@@ -69,9 +69,19 @@ button {
 input[type="text"],
 input[type="meal"],
 input[type="room"],
-input[type="file"],
-input[type="date"] {
+input[type="file"] {
     color: #000;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333; /* Match the overall website theme */
+    color: #fff; /* Text color */
+    box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 button {
