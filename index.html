@@ -37,8 +37,8 @@
                 <input type="room" id="room" name="room" required>
             </div>
             <div class="form-group">
-                <label for="date" hidden="true">Date</label>
-                <input type="text" id="date" name="date" hidden="true">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" hidden="true">
             </div>
             <div class="form-group">
                 <label for="complaint">Complaint <span class="required">*</span></label>
@@ -70,14 +70,6 @@
 
         form.addEventListener('submit', e => {
             const cmptext = document.getElementById('complaint');
-
-            // Get the current date
-            const currentDate = new Date();
-
-            const dateString = currentDate.toLocaleDateString();
-            const timeString = currentDate.getHours().toString() + ":" + currentDate.getMinutes().toString();
-            console.log(dateString + ' ' + timeString);
-            dateBox.value = dateString + "  " + timeString;
             
             e.preventDefault()
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
